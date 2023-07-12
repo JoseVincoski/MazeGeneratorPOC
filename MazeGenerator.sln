@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeGeneratorLib", "MazeGenerator\MazeGeneratorLib.csproj", "{FA2C3132-FBE1-42A3-8CB2-293C01C460B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazePrinterLib", "MazePrinter\MazePrinterLib.csproj", "{90DBBEE8-1864-4B0F-9AC6-E3336902CEE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA2C3132-FBE1-42A3-8CB2-293C01C460B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA2C3132-FBE1-42A3-8CB2-293C01C460B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA2C3132-FBE1-42A3-8CB2-293C01C460B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA2C3132-FBE1-42A3-8CB2-293C01C460B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DBBEE8-1864-4B0F-9AC6-E3336902CEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DBBEE8-1864-4B0F-9AC6-E3336902CEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DBBEE8-1864-4B0F-9AC6-E3336902CEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DBBEE8-1864-4B0F-9AC6-E3336902CEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB5509F3-FB7D-4C40-9E95-7C8DBEEDCFED}
+	EndGlobalSection
+EndGlobal
