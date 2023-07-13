@@ -4,6 +4,7 @@
     {
         Horizontal,
         Vertical,
+        IntesectionAll,
         IntersectionN,
         IntersectionE,
         IntersectionS,

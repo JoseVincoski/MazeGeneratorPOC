@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MazeGeneratorClass.Enums;
 using MazeGeneratorClass.MazeClass;
 using MazeGeneratorLib;
+using MazeGeneratorLib.MazeClass;
 
 namespace MazeGeneratorClass.HelperClasses
 {
@@ -16,6 +17,18 @@ namespace MazeGeneratorClass.HelperClasses
         public MazePrinter(Maze maze)
         {
             _maze = maze;
+        }
+
+        public void SimplePrintMaze()
+        {
+            for (int row = 0; row < _maze.MazeHeight; row++)
+            {
+                for (int column = 0; column < _maze.MazeWidth; column++)
+                {
+                    Console.Write(_maze.MazeTiles[row, column]);
+                }
+                Console.WriteLine();
+            }
         }
 
         public void PrintMaze()
@@ -32,41 +45,69 @@ namespace MazeGeneratorClass.HelperClasses
 
         private string GetTileType(int y, int x)
         {
-            var currentTile = _maze.GetPosition(x, y);
+            var currentTile = _maze.GetTileTypeInPosition(y, x);
             if (currentTile == TileType.Path) return CharactersPrinter.GetTile(MazeTiles.Path);
-            if (currentTile == TileType.Start) return CharactersPrinter.GetTile(MazeTiles.Start);
-            if (currentTile == TileType.Target) return CharactersPrinter.GetTile(MazeTiles.Target);
+            else if (currentTile == TileType.Start) return CharactersPrinter.GetTile(MazeTiles.Start);
+            else if (currentTile == TileType.Target) return CharactersPrinter.GetTile(MazeTiles.Target);
 
-            var edge = EdgeCases(y, x);
-            if (edge != null) return edge;
+            var tilesInfo = _maze.GetTilesAroundInfo(y, x);
 
-            var NTile = _maze.GetPosition(x, y - 1);
-            var ETile = _maze.GetPosition(x + 1, y);
-            var STile = _maze.GetPosition(x, y + 1);
-            var WTile = _maze.GetPosition(x - 1, y);
+            if (tilesInfo.IsAnyOutsideMaze())
+            {
+                var frame = CheckOutsideFrame(tilesInfo);
+                if (frame != null) return frame;
+            }
 
-            if (NTile == TileType.Wall && ETile == TileType.Wall && STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionE);
-            if (ETile == TileType.Wall && STile == TileType.Wall && WTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionS);
-            if (STile == TileType.Wall && WTile == TileType.Wall && NTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionW);
-            if (WTile == TileType.Wall && NTile == TileType.Wall && ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionN);
+            var intersection = CheckIntersections(tilesInfo);
+            if (intersection != null) return intersection;
 
-            if (NTile == TileType.Wall && ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NE);
-            if (ETile == TileType.Wall && STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.SE);
-            if (STile == TileType.Wall && WTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.SW);
-            if (WTile == TileType.Wall && NTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NW);
+            var corners = CheckCorners(tilesInfo);
+            if (corners != null) return corners;
 
-            if (WTile == TileType.Wall && ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Horizontal);
-            if (NTile == TileType.Wall && STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Vertical);
+            var straightLines = CheckStraightLines(tilesInfo);
+            if (straightLines != null) return straightLines;
 
             return CharactersPrinter.GetTile(MazeTiles.Path);
         }
 
-        private string? EdgeCases(int y, int x)
+        private string? CheckIntersections(TilesAroundInfo tiles)
         {
-            if ((x - 1) < 0 && (y - 1) < 0) return CharactersPrinter.GetTile(MazeTiles.SE);
-            if ((x - 1) < 0 && (y + 1) >= _maze.MazeHeight) return CharactersPrinter.GetTile(MazeTiles.NE);
-            if ((x + 1) >= _maze.MazeWidth && (y - 1) < 0) return CharactersPrinter.GetTile(MazeTiles.SW);
-            if ((x + 1) >= _maze.MazeWidth && (y + 1) >= _maze.MazeHeight) return CharactersPrinter.GetTile(MazeTiles.NW);
+            if (tiles.NTile == TileType.Wall && tiles.ETile == TileType.Wall && tiles.STile == TileType.Wall && tiles.WTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntesectionAll);
+            else if (tiles.NTile == TileType.Wall && tiles.ETile == TileType.Wall && tiles.STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionE);
+            else if (tiles.ETile == TileType.Wall && tiles.STile == TileType.Wall && tiles.WTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionS);
+            else if (tiles.STile == TileType.Wall && tiles.WTile == TileType.Wall && tiles.NTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionW);
+            else if (tiles.WTile == TileType.Wall && tiles.NTile == TileType.Wall && tiles.ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.IntersectionN);
+
+            return null;
+        }
+
+        private string? CheckCorners(TilesAroundInfo tiles)
+        {
+            if (tiles.NTile == TileType.Wall && tiles.ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NE);
+            else if (tiles.ETile == TileType.Wall && tiles.STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.SE);
+            else if (tiles.STile == TileType.Wall && tiles.WTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.SW);
+            else if(tiles.WTile == TileType.Wall && tiles.NTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NW);
+
+            return null;
+        }
+
+        private string? CheckStraightLines(TilesAroundInfo tiles)
+        {
+            if (tiles.WTile == TileType.Wall || tiles.ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Horizontal);
+            else if(tiles.NTile == TileType.Wall || tiles.STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Vertical);
+
+            return null;
+        }
+
+        private string? CheckOutsideFrame(TilesAroundInfo tiles)
+        {
+            if (tiles.NTile == TileType.OutsideMaze && tiles.ETile == TileType.OutsideMaze) return CharactersPrinter.GetTile(MazeTiles.SW);
+            else if (tiles.ETile == TileType.OutsideMaze && tiles.STile == TileType.OutsideMaze) return CharactersPrinter.GetTile(MazeTiles.NW);
+            else if (tiles.STile == TileType.OutsideMaze && tiles.WTile == TileType.OutsideMaze) return CharactersPrinter.GetTile(MazeTiles.NE);
+            else if (tiles.WTile == TileType.OutsideMaze && tiles.NTile == TileType.OutsideMaze) return CharactersPrinter.GetTile(MazeTiles.SE);
+
+            else if (tiles.NTile == TileType.OutsideMaze || tiles.STile == TileType.OutsideMaze) return CharactersPrinter.GetTile(MazeTiles.Horizontal);
+            else if (tiles.ETile == TileType.OutsideMaze || tiles.WTile == TileType.OutsideMaze) return CharactersPrinter.GetTile(MazeTiles.Vertical);
 
             return null;
         }

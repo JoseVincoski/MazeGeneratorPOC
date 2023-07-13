@@ -2,7 +2,7 @@
 using MazeGeneratorClass.HelperClasses;
 using MazeGeneratorClass.MazeClass;
 using MazeGeneratorLib;
-using static MazeGeneratorClass.HelperClasses.RandomNumberGenerator;
+using static MazeGeneratorClass.HelperClasses.NumberHelper;
 
 namespace MazeGeneratorClass
 {
@@ -25,7 +25,7 @@ namespace MazeGeneratorClass
 
         public Maze GetMaze()
         {
-            var startPosition = new MazePosition(1, 1);
+            var startPosition = new MazePosition(1,1);
             var targetPosition = startPosition;
 
             while (targetPosition.X == startPosition.X && targetPosition.Y == startPosition.Y)
@@ -40,11 +40,20 @@ namespace MazeGeneratorClass
 
         private void GenerateMaze()
         {
-            for (int row = 2; row < mazeHeight; row = row + 2)
+            for (int row = 1; row < mazeHeight - 1; row += 1)
             {
-                for (int column = 2; column < mazeWidth; column = column + 2)
+                bool rowIsEven = IsEven(row);
+                for (int column = 1; column < mazeWidth - 1; column += 1)
                 {
-                    _maze[row, column] = RandomNumberGenerator.randomNumber;
+                    bool columnIsEven = IsEven(column);
+
+                    //Both odd -> always wall
+                    //Both even -> always path
+                    if (rowIsEven == columnIsEven) { continue; }
+
+                    //Row even | Column odd -> Vertical Path
+                    //Row odd | Column even -> Horizontal Path
+                    _maze[row, column] = NumberHelper.randomNumber;
                 }
             }
         }

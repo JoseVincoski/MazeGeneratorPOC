@@ -6,5 +6,6 @@
         Start,
         Target,
         Path,
+        OutsideMaze,
     }
 }

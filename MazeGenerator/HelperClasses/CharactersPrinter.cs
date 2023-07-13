@@ -17,6 +17,7 @@ namespace MazeGeneratorClass.HelperClasses
         public static readonly string IntersectionW = "┤";
         public static readonly string Path = "P";
         public static readonly string Start = "S";
+        public static readonly string IntesectionAll = "┼";
         public static readonly string Target = "X";
 
         public static string GetTile(MazeTiles tileType)
