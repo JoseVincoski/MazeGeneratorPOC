@@ -3,14 +3,15 @@ using MazeGeneratorLib.MazeClasses;
 
 namespace MazeGeneratorLib.Generators
 {
-    public class RandomGen : IGenerator
+    //Completely random
+    public class MazeGenV1 : IGenerator
     {
         public void GenerateMaze(ref Maze maze)
         {
-            for (int row = 1; row < maze.MazeHeight - 1; row += 1)
+            for (int row = 1; row < maze.MazeHeight - 1; row++)
             {
                 bool rowIsEven = NumberHelper.IsEven(row);
-                for (int column = 1; column < maze.MazeWidth - 1; column += 1)
+                for (int column = 1; column < maze.MazeWidth - 1; column++)
                 {
                     bool columnIsEven = NumberHelper.IsEven(column);
 

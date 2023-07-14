@@ -9,7 +9,7 @@ namespace MazePrinterLib
         {
             while (true)
             {
-                var generator = new RandomGen();
+                var generator = new MazeGenV1();
 
                 MazeGenerator mazeGenerator = new MazeGenerator(generator, 15, 51);
                 var maze = mazeGenerator.GetMaze();
