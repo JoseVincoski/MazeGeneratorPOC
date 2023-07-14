@@ -14,22 +14,22 @@ namespace MazeGeneratorLib.Generators
 
             while (maze.TargetPosition == maze.StartPosition)
             {
-                maze.TargetPosition = NumberHelper.randomOddPosition(maze.MazeHeight, maze.MazeWidth);
+                maze.TargetPosition = NumberHelper.GetRandomPathPosition(maze.Height, maze.Width);
             }
         }
 
         public void GenerateBase(ref Maze maze)
         {
-            for (int row = 0; row < maze.MazeHeight; row++)
+            for (int row = 0; row < maze.Height; row++)
             {
-                for (int column = 0; column < maze.MazeWidth; column++)
+                for (int column = 0; column < maze.Width; column++)
                 {
                     //Generate Frame
-                    if (row == 0 || column == 0) maze.MazeTiles[row, column] = true;
-                    else if (row == maze.MazeHeight - 1 || column == maze.MazeWidth - 1) maze.MazeTiles[row, column] = true;
+                    if (row == 0 || column == 0) maze.Tiles[row, column] = true;
+                    else if (row == maze.Height - 1 || column == maze.Width - 1) maze.Tiles[row, column] = true;
 
                     //Generate inside base walls
-                    if (column % 2 == 0 || row % 2 == 0) maze.MazeTiles[row, column] = true;
+                    if (column % 2 == 0 || row % 2 == 0) maze.Tiles[row, column] = true;
                 }
             }
         }

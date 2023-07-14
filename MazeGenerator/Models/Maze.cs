@@ -5,16 +5,16 @@ namespace MazeGeneratorLib.MazeClasses
 {
     public class Maze
     {
-        public bool[,] MazeTiles { get; set; }
+        public bool[,] Tiles { get; set; }
         public MazePosition StartPosition { get; set; }
         public MazePosition TargetPosition { get; set; }
 
-        public int MazeHeight { get; set; }
-        public int MazeWidth { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
 
         public TileType GetTileTypeInPosition(int y, int x)
         {
-            if (x < 0 || x >= MazeWidth || y < 0 || y >= MazeHeight) return TileType.OutsideMaze;
+            if (x < 0 || x >= Width || y < 0 || y >= Height) return TileType.OutsideMaze;
 
             var mazePosition = new MazePosition(y, x);
 
@@ -26,9 +26,9 @@ namespace MazeGeneratorLib.MazeClasses
 
         public bool GetValueInPosition(int y, int x)
         {
-            if (y >= MazeHeight || x >= MazeWidth) return true;
+            if (y >= Height || x >= Width) return true;
 
-            return MazeTiles[y, x];
+            return Tiles[y, x];
         }
 
         public TilesAround<TileType> GetTilesAroundType(int y, int x)
@@ -55,10 +55,10 @@ namespace MazeGeneratorLib.MazeClasses
 
         public Maze(int _mazeHeight, int _mazeWidth)
         {
-            MazeHeight = _mazeHeight * 3;
-            MazeWidth = _mazeWidth * 3;
+            Height = _mazeHeight * 3;
+            Width = _mazeWidth * 3;
 
-            MazeTiles = new bool[MazeHeight, MazeWidth];
+            Tiles = new bool[Height, Width];
 
 
         }

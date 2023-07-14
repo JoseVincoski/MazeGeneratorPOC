@@ -9,7 +9,7 @@ namespace MazeGeneratorLib.HelperClasses
 
         public static bool RandomWallOrPath { get { return RNG.Next(MaxTileTypeValue) == 1; } }
 
-        public static MazePosition randomOddPosition(int maxHeight, int maxWidth)
+        public static MazePosition GetRandomPathPosition(int maxHeight, int maxWidth)
         {
             var oddHeightValue = RNG.Next(maxHeight / 2) * 2 + 1;
             var oddWidthValue = RNG.Next(maxWidth / 2) * 2 + 1;

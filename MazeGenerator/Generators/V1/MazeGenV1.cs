@@ -1,16 +1,16 @@
 ﻿using MazeGeneratorLib.HelperClasses;
 using MazeGeneratorLib.MazeClasses;
 
-namespace MazeGeneratorLib.Generators
+namespace MazeGeneratorLib.Generators.V1
 {
     public class MazeGenV1 : IGenerator
     {
         public void GenerateMaze(ref Maze maze)
         {
-            for (int row = 1; row < maze.MazeHeight - 1; row++)
+            for (int row = 1; row < maze.Height - 1; row++)
             {
                 bool rowIsEven = NumberHelper.IsEven(row);
-                for (int column = 1; column < maze.MazeWidth - 1; column++)
+                for (int column = 1; column < maze.Width - 1; column++)
                 {
                     bool columnIsEven = NumberHelper.IsEven(column);
 
@@ -20,7 +20,7 @@ namespace MazeGeneratorLib.Generators
 
                     //Row even | Column odd -> Vertical Path
                     //Row odd | Column even -> Horizontal Path
-                    maze.MazeTiles[row, column] = NumberHelper.RandomWallOrPath;
+                    maze.Tiles[row, column] = NumberHelper.RandomWallOrPath;
                 }
             }
         }

@@ -14,11 +14,11 @@ namespace MazeGeneratorLib.MazePrinter
 
         public void PrintMazeAsInts()
         {
-            for (int row = 0; row < _maze.MazeHeight; row++)
+            for (int row = 0; row < _maze.Height; row++)
             {
                 if (row == 44 || row == 45) { var a = 1; }
 
-                for (int column = 0; column < _maze.MazeWidth; column++)
+                for (int column = 0; column < _maze.Width; column++)
                 {
                     Console.Write(_maze.GetValueInPosition(row, column) ? 1 : 0);
                 }
@@ -28,11 +28,11 @@ namespace MazeGeneratorLib.MazePrinter
 
         public void PrintMazeTiles()
         {
-            for (int row = 0; row < _maze.MazeHeight; row++)
+            for (int row = 0; row < _maze.Height; row++)
             {
                 if (row == 44 || row == 45) { var a = 1; }
 
-                for (int column = 0; column < _maze.MazeWidth; column++)
+                for (int column = 0; column < _maze.Width; column++)
                 {
                     Console.Write(GetTileType(row, column));
                 }
