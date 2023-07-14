@@ -25,11 +25,11 @@ namespace MazeGeneratorLib.Generators
                 for (int column = 0; column < maze.MazeWidth; column++)
                 {
                     //Generate Frame
-                    if (row == 0 || column == 0) maze.MazeTiles[row, column] = GlobalVariables.WallTrue;
-                    else if (row == maze.MazeHeight - 1 || column == maze.MazeWidth - 1) maze.MazeTiles[row, column] = GlobalVariables.WallTrue;
+                    if (row == 0 || column == 0) maze.MazeTiles[row, column] = true;
+                    else if (row == maze.MazeHeight - 1 || column == maze.MazeWidth - 1) maze.MazeTiles[row, column] = true;
 
                     //Generate inside base walls
-                    if (column % 2 == 0 || row % 2 == 0) maze.MazeTiles[row, column] = GlobalVariables.WallTrue;
+                    if (column % 2 == 0 || row % 2 == 0) maze.MazeTiles[row, column] = true;
                 }
             }
         }

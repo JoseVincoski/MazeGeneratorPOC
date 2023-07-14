@@ -7,7 +7,7 @@ namespace MazeGeneratorLib.HelperClasses
         private static Random RNG = new Random((int)DateTime.Now.Ticks);
         private static readonly int MaxTileTypeValue = 2;
 
-        public static int randomNumber { get { return RNG.Next(MaxTileTypeValue); } }
+        public static bool RandomWallOrPath { get { return RNG.Next(MaxTileTypeValue) == 1; } }
 
         public static MazePosition randomOddPosition(int maxHeight, int maxWidth)
         {

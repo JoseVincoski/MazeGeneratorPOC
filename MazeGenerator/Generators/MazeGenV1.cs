@@ -3,7 +3,6 @@ using MazeGeneratorLib.MazeClasses;
 
 namespace MazeGeneratorLib.Generators
 {
-    //Completely random
     public class MazeGenV1 : IGenerator
     {
         public void GenerateMaze(ref Maze maze)
@@ -17,13 +16,15 @@ namespace MazeGeneratorLib.Generators
 
                     //Both odd -> always wall
                     //Both even -> always path
-                    if (rowIsEven == columnIsEven) { continue; }
+                    if (rowIsEven == columnIsEven) continue;
 
                     //Row even | Column odd -> Vertical Path
                     //Row odd | Column even -> Horizontal Path
-                    maze.MazeTiles[row, column] = NumberHelper.randomNumber;
+                    maze.MazeTiles[row, column] = NumberHelper.RandomWallOrPath;
                 }
             }
         }
     }
+
+    //This generator is completelly random. It not necessarelly generates a path between the start and the target
 }

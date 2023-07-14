@@ -5,7 +5,7 @@ namespace MazeGeneratorLib.MazeClasses
 {
     public class Maze
     {
-        public int[,] MazeTiles { get; set; }
+        public bool[,] MazeTiles { get; set; }
         public MazePosition StartPosition { get; set; }
         public MazePosition TargetPosition { get; set; }
 
@@ -20,20 +20,20 @@ namespace MazeGeneratorLib.MazeClasses
 
             if (mazePosition.X == StartPosition.X && mazePosition.Y == StartPosition.Y) return TileType.Start;
             else if (mazePosition.X == TargetPosition.X && mazePosition.Y == TargetPosition.Y) return TileType.Target;
-            else if (GetValueInPosition(y, x) == GlobalVariables.WallTrue) return TileType.Wall;
+            else if (GetValueInPosition(y, x)) return TileType.Wall;
             else return TileType.Path;
         }
 
-        public int GetValueInPosition(int y, int x)
+        public bool GetValueInPosition(int y, int x)
         {
-            if (y >= MazeHeight || x >= MazeWidth) return 1;
+            if (y >= MazeHeight || x >= MazeWidth) return true;
 
             return MazeTiles[y, x];
         }
 
-        public TilesAroundInfo GetTilesAroundInfo(int y, int x)
+        public TilesAround<TileType> GetTilesAroundType(int y, int x)
         {
-            return new TilesAroundInfo()
+            return new TilesAround<TileType>()
             {
                 NTile = GetTileTypeInPosition(y - 1, x),
                 ETile = GetTileTypeInPosition(y, x + 1),
@@ -42,12 +42,23 @@ namespace MazeGeneratorLib.MazeClasses
             };
         }
 
+        public TilesAround<bool> GetTilesAround(int y, int x)
+        {
+            return new TilesAround<bool>()
+            {
+                NTile = GetValueInPosition(y - 1, x),
+                ETile = GetValueInPosition(y, x + 1),
+                STile = GetValueInPosition(y + 1, x),
+                WTile = GetValueInPosition(y, x - 1),
+            };
+        }
+
         public Maze(int _mazeHeight, int _mazeWidth)
         {
             MazeHeight = _mazeHeight * 3;
             MazeWidth = _mazeWidth * 3;
 
-            MazeTiles = new int[MazeHeight, MazeWidth];
+            MazeTiles = new bool[MazeHeight, MazeWidth];
 
 
         }

@@ -11,12 +11,13 @@ namespace MazeGeneratorLib.Generators
         {
             Maze = new Maze(_mazeHeight, _mazeWidth);
             Generator = _generator;
+
+            Generator.GenerateBase(ref Maze);
         }
 
         public Maze GetMaze()
         {
             Generator.GeneratePoints(ref Maze);
-            Generator.GenerateBase(ref Maze);
             Generator.GenerateMaze(ref Maze);
 
             return Maze;
