@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MazeGeneratorClass.Enums;
-using MazeGeneratorClass.MazeClass;
-using MazeGeneratorLib;
-using MazeGeneratorLib.MazeClass;
+﻿using MazeGeneratorLib.MazeClasses;
+using MazeGeneratorLib.Models.Enums;
 
-namespace MazeGeneratorClass.HelperClasses
+namespace MazeGeneratorLib.MazePrinter
 {
     public class MazePrinter
     {
@@ -19,22 +11,26 @@ namespace MazeGeneratorClass.HelperClasses
             _maze = maze;
         }
 
-        public void SimplePrintMaze()
+        public void PrintMazePrimitiveValues()
         {
             for (int row = 0; row < _maze.MazeHeight; row++)
             {
+                if (row == 44 || row == 45) { var a = 1; }
+
                 for (int column = 0; column < _maze.MazeWidth; column++)
                 {
-                    Console.Write(_maze.MazeTiles[row, column]);
+                    Console.Write(_maze.GetValueInPosition(row, column));
                 }
                 Console.WriteLine();
             }
         }
 
-        public void PrintMaze()
+        public void PrintMazeTiles()
         {
             for (int row = 0; row < _maze.MazeHeight; row++)
             {
+                if (row == 44 || row == 45) { var a = 1; }
+
                 for (int column = 0; column < _maze.MazeWidth; column++)
                 {
                     Console.Write(GetTileType(row, column));
@@ -86,7 +82,7 @@ namespace MazeGeneratorClass.HelperClasses
             if (tiles.NTile == TileType.Wall && tiles.ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NE);
             else if (tiles.ETile == TileType.Wall && tiles.STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.SE);
             else if (tiles.STile == TileType.Wall && tiles.WTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.SW);
-            else if(tiles.WTile == TileType.Wall && tiles.NTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NW);
+            else if (tiles.WTile == TileType.Wall && tiles.NTile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.NW);
 
             return null;
         }
@@ -94,7 +90,7 @@ namespace MazeGeneratorClass.HelperClasses
         private string? CheckStraightLines(TilesAroundInfo tiles)
         {
             if (tiles.WTile == TileType.Wall || tiles.ETile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Horizontal);
-            else if(tiles.NTile == TileType.Wall || tiles.STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Vertical);
+            else if (tiles.NTile == TileType.Wall || tiles.STile == TileType.Wall) return CharactersPrinter.GetTile(MazeTiles.Vertical);
 
             return null;
         }

@@ -1,4 +1,4 @@
-﻿namespace MazeGeneratorClass.Enums
+﻿namespace MazeGeneratorLib.Models.Enums
 {
     public enum TileType
     {

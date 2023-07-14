@@ -1,5 +1,5 @@
-﻿using MazeGeneratorClass;
-using MazeGeneratorClass.HelperClasses;
+﻿using MazeGeneratorLib.Generators;
+using MazeGeneratorLib.MazePrinter;
 
 namespace MazePrinterLib
 {
@@ -9,13 +9,14 @@ namespace MazePrinterLib
         {
             while (true)
             {
-                MazeGenerator mazeGenerator = new MazeGenerator(5, 5);
+                var generator = new RandomGen();
+
+                MazeGenerator mazeGenerator = new MazeGenerator(generator, 15, 51);
                 var maze = mazeGenerator.GetMaze();
 
                 var mazePrinter = new MazePrinter(maze);
 
-                mazePrinter.SimplePrintMaze();
-                mazePrinter.PrintMaze();
+                mazePrinter.PrintMazeTiles();
 
                 Console.ReadLine();
             }

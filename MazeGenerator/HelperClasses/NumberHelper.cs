@@ -1,6 +1,6 @@
-﻿using MazeGeneratorClass.MazeClass;
+﻿using MazeGeneratorLib.MazeClasses;
 
-namespace MazeGeneratorClass.HelperClasses
+namespace MazeGeneratorLib.HelperClasses
 {
     public static class NumberHelper
     {

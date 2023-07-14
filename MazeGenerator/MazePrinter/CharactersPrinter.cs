@@ -1,7 +1,7 @@
-﻿using MazeGeneratorClass.Enums;
+﻿using MazeGeneratorLib.Models.Enums;
 using System.Reflection;
 
-namespace MazeGeneratorClass.HelperClasses
+namespace MazeGeneratorLib.MazePrinter
 {
     public static class CharactersPrinter
     {
@@ -15,7 +15,7 @@ namespace MazeGeneratorClass.HelperClasses
         public static readonly string IntersectionE = "├";
         public static readonly string IntersectionS = "┬";
         public static readonly string IntersectionW = "┤";
-        public static readonly string Path = "P";
+        public static readonly string Path = " ";
         public static readonly string Start = "S";
         public static readonly string IntesectionAll = "┼";
         public static readonly string Target = "X";
