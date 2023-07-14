@@ -1,5 +1,6 @@
 ﻿using MazeGeneratorLib.HelperClasses;
 using MazeGeneratorLib.MazeClasses;
+using MazeGeneratorLib.Models.Enums;
 
 namespace MazeGeneratorLib.Generators
 {
@@ -12,7 +13,7 @@ namespace MazeGeneratorLib.Generators
             maze.StartPosition = new MazePosition(1, 1);
             maze.TargetPosition = maze.StartPosition;
 
-            while (maze.TargetPosition == maze.StartPosition)
+            while (maze.TargetPosition.IsEqual(maze.StartPosition))
             {
                 maze.TargetPosition = NumberHelper.GetRandomPathPosition(maze.Height, maze.Width);
             }
@@ -25,11 +26,10 @@ namespace MazeGeneratorLib.Generators
                 for (int column = 0; column < maze.Width; column++)
                 {
                     //Generate Frame
-                    if (row == 0 || column == 0) maze.Tiles[row, column] = true;
-                    else if (row == maze.Height - 1 || column == maze.Width - 1) maze.Tiles[row, column] = true;
-
+                    if (row == 0 || column == 0) maze.Tiles[row, column] = (int)TileType.MazeFrame;
+                    else if (row == maze.Height - 1 || column == maze.Width - 1) maze.Tiles[row, column] = (int)TileType.MazeFrame;
                     //Generate inside base walls
-                    if (column % 2 == 0 || row % 2 == 0) maze.Tiles[row, column] = true;
+                    else if (column % 2 == 0 || row % 2 == 0) maze.Tiles[row, column] = (int)TileType.Wall;
                 }
             }
         }

@@ -7,7 +7,12 @@ namespace MazeGeneratorLib.HelperClasses
     {
         public static bool IsAnyOutsideMaze(TilesAround<TileType> tiles)
         {
-            return tiles.NTile == TileType.OutsideMaze || tiles.ETile == TileType.OutsideMaze || tiles.STile == TileType.OutsideMaze || tiles.WTile == TileType.OutsideMaze;
+            return tiles.NTile == TileType.MazeFrame || tiles.ETile == TileType.MazeFrame || tiles.STile == TileType.MazeFrame || tiles.WTile == TileType.MazeFrame;
+        }
+
+        public static bool IsFrameOrWall(TileType type)
+        {
+            return (type == TileType.MazeFrame || type == TileType.Wall);
         }
     }
 }

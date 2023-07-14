@@ -16,5 +16,10 @@ namespace MazeGeneratorLib.MazeClasses
             Y = _y;
             X = _x;
         }
+
+        public bool IsEqual(MazePosition otherMazePosition)
+        {
+            return (Y == otherMazePosition.Y && X == otherMazePosition.X);
+        }
     }
 }

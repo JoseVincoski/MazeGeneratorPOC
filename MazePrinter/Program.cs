@@ -30,6 +30,7 @@ namespace MazePrinterLib
 
             var mazePrinter = new MazePrinter(maze);
 
+            mazePrinter.PrintMazeAsInts();
             mazePrinter.PrintMazeTiles();
         }
     }
