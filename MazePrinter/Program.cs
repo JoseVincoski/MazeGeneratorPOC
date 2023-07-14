@@ -1,4 +1,5 @@
 ﻿using MazeGeneratorLib.Generators;
+using MazeGeneratorLib.Generators.V2;
 using MazeGeneratorLib.MazePrinter;
 
 namespace MazePrinterLib
@@ -9,17 +10,27 @@ namespace MazePrinterLib
         {
             while (true)
             {
-                var generator = new MazeGenV1();
+                var watch = System.Diagnostics.Stopwatch.StartNew();
 
-                MazeGenerator mazeGenerator = new MazeGenerator(generator, 15, 51);
-                var maze = mazeGenerator.GetMaze();
+                GenerateAndPrintMaze();
 
-                var mazePrinter = new MazePrinter(maze);
+                watch.Stop();
 
-                mazePrinter.PrintMazeTiles();
-
+                Console.WriteLine(watch.ElapsedMilliseconds);
                 Console.ReadLine();
             }
+        }
+
+        public static void GenerateAndPrintMaze()
+        {
+            var generator = new MazeGenV2();
+
+            MazeGenerator mazeGenerator = new MazeGenerator(generator, 5, 5);
+            var maze = mazeGenerator.GetMaze();
+
+            var mazePrinter = new MazePrinter(maze);
+
+            mazePrinter.PrintMazeTiles();
         }
     }
 }
