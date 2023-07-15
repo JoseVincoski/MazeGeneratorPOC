@@ -1,5 +1,4 @@
-﻿using MazeGeneratorLib.HelperClasses;
-using MazeGeneratorLib.MazeClasses;
+﻿using MazeGeneratorLib.Models;
 using MazeGeneratorLib.Models.Enums;
 
 namespace MazeGeneratorLib.Generators
@@ -26,10 +25,10 @@ namespace MazeGeneratorLib.Generators
                 for (int column = 0; column < maze.Width; column++)
                 {
                     //Generate Frame
-                    if (row == 0 || column == 0) maze.Tiles[row, column] = (int)TileType.MazeFrame;
-                    else if (row == maze.Height - 1 || column == maze.Width - 1) maze.Tiles[row, column] = (int)TileType.MazeFrame;
+                    if (row == 0 || column == 0) maze.Tiles[row, column] = (int)TileType.SolidWall;
+                    else if (row == maze.Height - 1 || column == maze.Width - 1) maze.Tiles[row, column] = (int)TileType.SolidWall;
                     //Generate inside base walls
-                    else if (column % 2 == 0 || row % 2 == 0) maze.Tiles[row, column] = (int)TileType.Wall;
+                    else if (column % 2 == 0 || row % 2 == 0) maze.Tiles[row, column] = (int)TileType.MovableWall;
                 }
             }
         }

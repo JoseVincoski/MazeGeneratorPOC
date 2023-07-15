@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MazeGeneratorLib.MazeClasses
+﻿namespace MazeGeneratorLib.Models
 {
     public class MazePosition
     {
@@ -19,7 +13,7 @@ namespace MazeGeneratorLib.MazeClasses
 
         public bool IsEqual(MazePosition otherMazePosition)
         {
-            return (Y == otherMazePosition.Y && X == otherMazePosition.X);
+            return Y == otherMazePosition.Y && X == otherMazePosition.X;
         }
     }
 }

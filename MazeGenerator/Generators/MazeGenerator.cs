@@ -1,10 +1,10 @@
-﻿using MazeGeneratorLib.MazeClasses;
+﻿using MazeGeneratorLib.Models;
 
 namespace MazeGeneratorLib.Generators
 {
     public class MazeGenerator
     {
-        private Maze Maze;
+        public Maze Maze;
         private IGenerator Generator;
 
         public MazeGenerator(IGenerator _generator, int _mazeHeight, int _mazeWidth)

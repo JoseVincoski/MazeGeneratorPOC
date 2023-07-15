@@ -1,5 +1,4 @@
-﻿using MazeGeneratorLib.HelperClasses;
-using MazeGeneratorLib.MazeClasses;
+﻿using MazeGeneratorLib.Models;
 
 namespace MazeGeneratorLib.Generators.V1
 {

@@ -1,10 +1,13 @@
-﻿namespace MazeGeneratorLib.MazeClasses
+﻿using MazeGeneratorLib.Models.Enums;
+
+namespace MazeGeneratorLib.Models
 {
-    public class TilesAround<T>
+    public class TilesAround
     {
-        public T NTile;
-        public T ETile;
-        public T STile;
-        public T WTile;
+        public TileType NTile;
+        public TileType ETile;
+        public TileType STile;
+        public TileType WTile;
+        public readonly int MovableWallsCount;
     }
 }

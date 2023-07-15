@@ -25,10 +25,15 @@ namespace MazePrinterLib
         {
             var generator = new MazeGenV2();
 
-            MazeGenerator mazeGenerator = new MazeGenerator(generator, 5, 5);
+            MazeGenerator mazeGenerator = new MazeGenerator(generator, 15, 51);
+
+            var mazePrinterBefore = new MazePrinter(mazeGenerator.Maze);
+            mazePrinterBefore.PrintMazeAsInts();
+
             var maze = mazeGenerator.GetMaze();
 
             var mazePrinter = new MazePrinter(maze);
+
 
             mazePrinter.PrintMazeAsInts();
             mazePrinter.PrintMazeTiles();

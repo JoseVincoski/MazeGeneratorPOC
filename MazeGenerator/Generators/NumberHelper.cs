@@ -1,13 +1,12 @@
-﻿using MazeGeneratorLib.MazeClasses;
+﻿using MazeGeneratorLib.Models;
 
-namespace MazeGeneratorLib.HelperClasses
+namespace MazeGeneratorLib.Generators
 {
     public static class NumberHelper
     {
         private static Random RNG = new Random((int)DateTime.Now.Ticks);
-        private static readonly int MaxTileTypeValue = 2;
 
-        public static int RandomWallOrPath { get { return RNG.Next(MaxTileTypeValue); } }
+        public static int RandomWallOrPath { get { return RNG.Next(2); } }
 
         public static MazePosition GetRandomPathPosition(int maxHeight, int maxWidth)
         {
@@ -15,11 +14,6 @@ namespace MazeGeneratorLib.HelperClasses
             var oddWidthValue = RNG.Next(maxWidth / 2) * 2 + 1;
 
             return new MazePosition(oddHeightValue, oddWidthValue);
-        }
-
-        public static bool IsOdd(int value)
-        {
-            return value % 2 == 0;
         }
 
         public static bool IsEven(int value)

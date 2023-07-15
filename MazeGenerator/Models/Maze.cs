@@ -1,7 +1,6 @@
-﻿using MazeGeneratorLib.HelperClasses;
-using MazeGeneratorLib.Models.Enums;
+﻿using MazeGeneratorLib.Models.Enums;
 
-namespace MazeGeneratorLib.MazeClasses
+namespace MazeGeneratorLib.Models
 {
     public class Maze
     {
@@ -24,9 +23,9 @@ namespace MazeGeneratorLib.MazeClasses
             else return (TileType)Tiles[y, x];
         }
 
-        public TilesAround<TileType> GetTilesAroundType(int y, int x)
+        public TilesAround GetTilesTypeAroundPosition(int y, int x)
         {
-            return new TilesAround<TileType>()
+            return new TilesAround()
             {
                 NTile = GetTileTypeInPosition(y - 1, x),
                 ETile = GetTileTypeInPosition(y, x + 1),

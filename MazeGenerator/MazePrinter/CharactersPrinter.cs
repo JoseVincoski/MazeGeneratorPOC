@@ -15,10 +15,12 @@ namespace MazeGeneratorLib.MazePrinter
         public static readonly string IntersectionE = "├";
         public static readonly string IntersectionS = "┬";
         public static readonly string IntersectionW = "┤";
-        public static readonly string Path = " ";
         public static readonly string Start = "S";
         public static readonly string IntesectionAll = "┼";
         public static readonly string Target = "X";
+
+        public static readonly string Path = " ";
+        public static readonly string VerifiedPath = " ";
 
         public static string GetTile(MazeTiles tileType)
         {
